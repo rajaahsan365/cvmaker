@@ -1,0 +1,31 @@
+[
+  {
+    "category": "Basic Information",
+    "label": "Full Name",
+    "name": "full_name",
+    "id": "full_name",
+    "placeholder": "Full Name",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Email Address",
+    "name": "email_address",
+    "inputType": "email",
+    "id": "email_address",
+    "placeholder": "Email Address",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "name": "submit",
+    "type": "submit",
+    "inputType": "button",
+    "children": "Save Resume",
+    "wrapperClass": "col-12 my-5 text-end",
+    "className": "btn-primary text-dark fw-bold px-2",
+    "iconName": "save2-fill"
+  }
+]

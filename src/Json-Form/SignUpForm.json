@@ -1,0 +1,38 @@
+[
+  {
+    "label": "Email",
+    "name": "email",
+    "id": "email",
+    "inputType": "email",
+    "placeholder": "Email",
+    "wrapperClass": "col-12",
+    "validationtype": "email"
+  },
+  {
+    "label": "Password",
+    "name": "password",
+    "inputType": "password",
+    "id": "password",
+    "placeholder": "Your Password",
+    "wrapperClass": "col-12",
+    "validationtype": "password"
+  },
+  {
+    "label": "Cofirm Password",
+    "name": "confirm_password",
+    "inputType": "password",
+    "id": "confirm_password",
+    "placeholder": "Confirm Password",
+    "wrapperClass": "col-12",
+    "validationtype": "confirm_password"
+  },
+  {
+    "name": "submit",
+    "inputType": "button",
+    "type": "submit",
+    "buttonType": "submit",
+    "children": "SignUp",
+    "wrapperClass": "btn-wrapper my-4 text-center",
+    "className": "btn-success px-3"
+  }
+]

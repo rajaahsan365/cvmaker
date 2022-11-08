@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+/* Colors Combination Section */
+
+.bg-cyan {
+  background-color: #18C7E1;
+}
+
+a {
+  text-decoration: none;
+
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar li {
+  padding-left: 20px;
+  color: white;
+}
