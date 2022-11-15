@@ -10,32 +10,6 @@
   },
   {
     "category": "Basic Information",
-    "label": "choices",
-    "name": "choices",
-    "options": [
-      {
-        "label": "Choice 1",
-        "value": "choice1"
-      },
-      {
-        "label": "Choice 2",
-        "value": "choice2"
-      },
-      {
-        "label": "Choice 3",
-        "value": "choice3"
-      },
-      {
-        "label": "Choice 4",
-        "value": "choice4"
-      }
-    ],
-    "inputType": "checkbox",
-    "isMulti": true,
-    "wrapperClass": "col-md-6"
-  },
-  {
-    "category": "Basic Information",
     "label": "Gender",
     "name": "gender",
     "options": [
@@ -54,8 +28,34 @@
   },
   {
     "category": "Basic Information",
+    "label": "Hobbies",
+    "name": "hobbies",
+    "options": [
+      {
+        "label": "Football",
+        "value": "football"
+      },
+      {
+        "label": "Cricket",
+        "value": "cricket"
+      },
+      {
+        "label": "Novels",
+        "value": "novels"
+      },
+      {
+        "label": "Hockey",
+        "value": "hockey"
+      }
+    ],
+    "inputType": "checkbox",
+    "isMulti": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
     "label": "choices",
-    "name": "selector",
+    "name": "choices",
     "options": [
       {
         "label": "Choice 1",
@@ -78,7 +78,80 @@
     "isMulti": true,
     "wrapperClass": "col-md-6"
   },
+  {
+    "category": "Basic Information",
+    "inputType": "fieldArray",
+    "name": "education",
+    "wrapperClass": "col-12",
+    "fields": [
+      {
+        "label": "Course Name",
+        "name": "course_name",
+        "id": "course_name",
+        "placeholder": "Course Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Institution Name",
+        "name": "institution_name",
+        "id": "institution_name",
+        "placeholder": "Institution Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Start Date",
+        "name": "start_date",
+        "id": "start_date",
+        "placeholder": "Start Date",
+        "suggestion": "Eg: Jan 2005",
+        "inputType": "date",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "End Date",
+        "name": "end_date",
+        "id": "end_date",
+        "placeholder": "End Date",
+        "suggestion": "Eg: Jan 2005,or Present",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Other Information",
+        "name": "other_info",
+        "id": "other_info",
+        "placeholder": "Other Information",
+        "suggestion": "Optional details such as course description, marks etc.",
+        "inputType": "text-editor",
+        "required": true,
+        "wrapperClass": "col-md-12"
+      }
+    ]
+  },
 
+  {
+    "category": "Basic Information",
+    "label": "Interests",
+    "name": "interests",
+    "id": "interests",
+    "placeholder": "Interests",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Reference",
+    "name": "reference",
+    "id": "reference",
+    "placeholder": "Reference",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
   {
     "category": "Basic Information",
     "name": "submit",

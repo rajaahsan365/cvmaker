@@ -10,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 import loginFields from "../../Json-Form/LoginForm.json";
 import signupFields from "../../Json-Form/SignUpForm.json";
 import InputForm from "../../components/form/InputForm";
+import {
+  getFormInitialValue,
+  getFormValidationObject,
+} from "../../assets/utils";
 
 const LoginSignupPage = () => {
   const signInUser = (data) => {
@@ -51,9 +55,10 @@ const LoginSignupPage = () => {
                                         -------------------------------------------- */}
 
             <InputForm
-              initialFieldValues={loginFields}
+              initialFieldValues={getFormInitialValue(loginFields)}
               formData={loginFields}
               withValidation={true}
+              formValidation={getFormValidationObject(loginFields)}
               onFormSubmit={loginUser}
             />
           </div>
@@ -64,8 +69,9 @@ const LoginSignupPage = () => {
 
             {/* SignUp Form */}
             <InputForm
-              initialFieldValues={signupFields}
+              initialFieldValues={getFormInitialValue(signupFields)}
               formData={signupFields}
+              formValidation={getFormValidationObject(signupFields)}
               withValidation={true}
               onFormSubmit={signInUser}
             />

@@ -12,7 +12,8 @@ export const getDateandTime = () => {
   return new Date().toLocaleString();
 };
 
-export const getArrayValuetoEmptyObject = (arr) => {
+export const getFormInitialValue = (obj) => {
+  const arr = obj.filter((obj, ind) => obj.name !== "submit");
   const newArr = arr.filter(({ name }) => name.includes(".") != true);
   return newArr.reduce(
     (acc, value) => ({
@@ -23,7 +24,11 @@ export const getArrayValuetoEmptyObject = (arr) => {
   );
 };
 
-export const getArrayValuetoValidationObject = (arr, validationNames) => {
+export const getFormValidationObject = (obj) => {
+  const arr = obj
+    .filter((obj, ind) => obj.name !== "submit")
+    .map(({ name }) => name);
+  const validationNames = obj.map(({ validationtype }) => validationtype);
   return arr.reduce(
     (acc, value, ind) => ({
       ...acc,

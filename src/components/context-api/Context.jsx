@@ -42,7 +42,7 @@ const AppProvider = ({ children }) => {
         const key = snapshot.key;
         const data = snapshot.val();
         resolve(data);
-        console.log("🚀 ~ file: Context.jsx ~ line 36 ~ onValue ~ val", data);
+        console.log("🚀 ~ file: Context.jsx ~ line 45 ~ onValue ~ data", data);
       });
     });
     return myPromise;
@@ -55,7 +55,7 @@ const AppProvider = ({ children }) => {
         const key = snapshot.key;
         const data = snapshot.val();
         resolve(data);
-        console.log("🚀 ~ file: Context.jsx ~ line 36 ~ onValue ~ val", data);
+        console.log("🚀 ~ file: Context.jsx ~ line 58 ~ onValue ~ val", data);
       });
     });
     return myPromise;
@@ -67,7 +67,7 @@ const AppProvider = ({ children }) => {
       const key = snapshot.key;
       const data = snapshot.val();
       addData(data);
-      console.log("🚀 ~ file: Context.jsx ~ line 36 ~ onValue ~ val", data);
+      console.log("🚀 ~ file: Context.jsx ~ line 70 ~ onValue ~ val", data);
     });
   };
 

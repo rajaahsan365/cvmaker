@@ -2,7 +2,11 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getFieldsByCategory } from "../../assets/utils";
+import {
+  getFieldsByCategory,
+  getFormInitialValue,
+  getFormValidationObject,
+} from "../../assets/utils";
 import { useGlobalContext } from "../../components/context-api/Context";
 import InputForm from "../../components/form/InputForm";
 import Header2 from "../../components/header/Header2";
@@ -34,8 +38,16 @@ const CreateUpdateCV = () => {
 
   const getData = {};
   useEffect(() => {
-    getRecordById(id);
+    getRecordByApi();
   }, [id]);
+
+  const getRecordByApi = async () => {
+    const data = await getRecordById(id);
+    console.log(
+      "🚀 ~ file: CreateUpdateCV.jsx ~ line 46 ~ getRecordByApi ~ data",
+      data
+    );
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -112,7 +124,7 @@ const CreateUpdateCV = () => {
         <div className="right col-md-9 col-6">
           <p className="fs-4">{selectOption.name}</p>
           <InputForm
-            initialFieldValues={cvFormFields}
+            initialFieldValues={getFormInitialValue(cvFormFields)}
             formData={getFieldsByCategory(cvFormFields, selectOption.type)}
             onFormSubmit={onFormSubmit}
           />

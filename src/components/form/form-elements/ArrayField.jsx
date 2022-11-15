@@ -1,11 +1,10 @@
 import React from "react";
 import { FieldArray, Field, ErrorMessage } from "formik";
-import { getArrayValuetoEmptyObject } from "../../../assets/utils";
+import { getFormInitialValue } from "../../../assets/utils";
 import Input from "../Input";
 const ArrayField = ({ withValidation, handleChange, values, ...props }) => {
-  const fieldsName = getArrayValuetoEmptyObject(props.fields);
+  const fieldsName = getFormInitialValue(props.fields);
 
-  let name;
   return (
     <FieldArray
       name={props.name}

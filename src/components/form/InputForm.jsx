@@ -2,43 +2,24 @@ import React, { Children } from "react";
 import Input from "./Input";
 import { Formik, Form, ErrorMessage, FieldArray, Field } from "formik";
 import { useState } from "react";
-import {
-  getArrayValuetoEmptyObject,
-  getArrayValuetoValidationObject,
-} from "../../assets/utils";
 import * as yup from "yup";
 const InputForm = ({
-  initialFieldValues = [],
+  initialFieldValues = {},
   formData = [],
   onFormSubmit = "",
   withValidation = false,
-  formValidation,
+  formValidation = {},
   extraInputClass,
   Children,
   ...otherProps
 }) => {
   const [formInitialValues, setFormInitialValues] = useState({});
 
-  const initialValues = getArrayValuetoEmptyObject(
-    initialFieldValues.filter((obj, ind) => obj.name !== "submit")
-  );
-  console.log(
-    "🚀 ~ file: InputForm.jsx ~ line 24 ~ initialValues",
-    initialValues
-  );
-
-  const validation = yup.object().shape(
-    getArrayValuetoValidationObject(
-      initialFieldValues
-        .filter((obj, ind) => obj.name !== "submit")
-        .map(({ name }) => name),
-      initialFieldValues.map(({ validationtype }) => validationtype)
-    )
-  );
+  const validation = yup.object().shape(formValidation);
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={initialFieldValues}
       validationSchema={withValidation ? validation : ""}
       onSubmit={onFormSubmit ? onFormSubmit : (values) => console.log(values)}
     >
