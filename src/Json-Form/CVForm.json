@@ -10,14 +10,75 @@
   },
   {
     "category": "Basic Information",
-    "label": "Email Address",
-    "name": "email_address",
-    "inputType": "email",
-    "id": "email_address",
-    "placeholder": "Email Address",
-    "required": true,
+    "label": "choices",
+    "name": "choices",
+    "options": [
+      {
+        "label": "Choice 1",
+        "value": "choice1"
+      },
+      {
+        "label": "Choice 2",
+        "value": "choice2"
+      },
+      {
+        "label": "Choice 3",
+        "value": "choice3"
+      },
+      {
+        "label": "Choice 4",
+        "value": "choice4"
+      }
+    ],
+    "inputType": "checkbox",
+    "isMulti": true,
     "wrapperClass": "col-md-6"
   },
+  {
+    "category": "Basic Information",
+    "label": "Gender",
+    "name": "gender",
+    "options": [
+      {
+        "label": "Male",
+        "value": "male"
+      },
+      {
+        "label": "Female",
+        "value": "female"
+      }
+    ],
+    "inputType": "radio",
+    "isMulti": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "choices",
+    "name": "selector",
+    "options": [
+      {
+        "label": "Choice 1",
+        "value": "choice1"
+      },
+      {
+        "label": "Choice 2",
+        "value": "choice2"
+      },
+      {
+        "label": "Choice 3",
+        "value": "choice3"
+      },
+      {
+        "label": "Choice 4",
+        "value": "choice4"
+      }
+    ],
+    "inputType": "select",
+    "isMulti": true,
+    "wrapperClass": "col-md-6"
+  },
+
   {
     "category": "Basic Information",
     "name": "submit",

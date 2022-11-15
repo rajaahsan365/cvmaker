@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Children } from "react";
 import Input from "./Input";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage, FieldArray, Field } from "formik";
 import { useState } from "react";
 import {
   getArrayValuetoEmptyObject,
@@ -14,14 +14,17 @@ const InputForm = ({
   withValidation = false,
   formValidation,
   extraInputClass,
+  Children,
   ...otherProps
 }) => {
   const [formInitialValues, setFormInitialValues] = useState({});
 
   const initialValues = getArrayValuetoEmptyObject(
-    initialFieldValues
-      .filter((obj, ind) => obj.name !== "submit")
-      .map(({ name }) => name)
+    initialFieldValues.filter((obj, ind) => obj.name !== "submit")
+  );
+  console.log(
+    "🚀 ~ file: InputForm.jsx ~ line 24 ~ initialValues",
+    initialValues
   );
 
   const validation = yup.object().shape(
@@ -47,12 +50,13 @@ const InputForm = ({
         handleBlur,
         handleSubmit,
         isSubmitting,
+        setFieldValue,
         /* and other goodies */
       }) => (
         <Form action="" className="form row" {...otherProps}>
           {formData.map(
             (
-              { wrapperClass, label, suggestion = "", ...formAttributes },
+              { wrapperClass, label, name, suggestion = "", ...formAttributes },
               index
             ) => {
               return (
@@ -66,10 +70,7 @@ const InputForm = ({
                       }`}
                     >
                       {label && (
-                        <label
-                          className={`h5 m-2`}
-                          htmlFor={formAttributes.name}
-                        >
+                        <label className={`h5 m-2`} htmlFor={name}>
                           {label}
                         </label>
                       )}
@@ -81,9 +82,20 @@ const InputForm = ({
                         }
                       >
                         <Input
-                          onChange={(evt) => handleChange(evt)}
-                          attributes={{ ...formAttributes }}
+                          onChange={
+                            formAttributes.inputType === "select"
+                              ? setFieldValue
+                              : handleChange
+                          }
+                          attributes={{
+                            ...formAttributes,
+                            values,
+                            withValidation,
+                            handleChange,
+                          }}
+                          name={name}
                         />
+
                         {suggestion && (
                           <span className="lead mb-0">
                             <small>{suggestion}</small>
@@ -92,7 +104,7 @@ const InputForm = ({
                         {withValidation && (
                           <ErrorMessage
                             className="text-danger mt-2 mx-3"
-                            name={formAttributes.name}
+                            name={name}
                             component="div"
                           />
                         )}
@@ -103,7 +115,7 @@ const InputForm = ({
               );
             }
           )}
-          {/* <button className="btn btn-success">Submit</button> */}
+          {Children && Children}
         </Form>
       )}
     </Formik>

@@ -1,5 +1,9 @@
+import ArrayField from "./form-elements/ArrayField";
 import Button from "./form-elements/Button";
+import Checkbox from "./form-elements/Checkbox";
 import Password from "./form-elements/Password";
+import RadioBox from "./form-elements/RadioBox";
+import Dropdown from "./form-elements/Dropdown";
 
 export const inputTypes = {
   text: <input className="form-control" />,
@@ -16,6 +20,10 @@ export const inputTypes = {
   button: <Button type="button"></Button>,
   hidden: <input type="hidden"></input>,
   submit: <h1></h1>,
+  fieldArray: <ArrayField />,
+  checkbox: <Checkbox />,
+  radio: <RadioBox />,
+  select: <Dropdown />,
   // dropdown: <Dropdown />,
   // tableInput: <TableInput />,
   // SelectableTable: <SelectableTableInput />,

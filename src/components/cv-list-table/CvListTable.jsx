@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { objectIsEmpty } from "../../assets/utils";
 import { useGlobalContext } from "../context-api/Context";
 
 const CvListTable = () => {
-  const [cvListDetail, setCVListDetail] = useState([]);
-  const { getAllValue } = useGlobalContext();
+  const {
+    getAllValue,
+    cvListDetail,
+    setCVListDetail,
+    handleDelete,
+    duplicateRecord,
+  } = useGlobalContext();
+  const [cvKeys, setCvKeys] = useState([]);
+  const [render, setRender] = useState(false);
 
-  const abc = async () => {
+  const getRecords = async () => {
     const res = await getAllValue();
-    const d = res.map(({ cv_detail }) => cv_detail);
-    console.log("🚀 ~ file: CvListTable.jsx ~ line 12 ~ abc ~ d", d);
-    setCVListDetail([...cvListDetail, ...d]);
+    const cvDatas = Object.values(res);
+    setCvKeys([...Object.keys(res)]);
+    setCVListDetail([...cvDatas]);
   };
 
-  console.log(
-    "🚀 ~ file: CvListTable.jsx ~ line 18 ~ abc ~ ----",
-    cvListDetail
-  );
-
   useEffect(() => {
-    abc();
+    getRecords();
   }, []);
+
+  const callback = (id) => {
+    getRecords();
+  };
+
+  const onDelete = (ind) => {
+    handleDelete(cvKeys[ind], () => callback(cvKeys[ind]));
+  };
+  const onDuplicate = (ind) => {
+    duplicateRecord(cvKeys[ind]);
+    setRender(!render);
+  };
 
   return (
     <>
@@ -35,12 +50,40 @@ const CvListTable = () => {
             </tr>
           </thead>
           <tbody className="table-group-divider">
-            {Object.entries(cvListDetail).map(([key, value], ind) => (
-              <tr key={key}>
-                <th scope="row">{value.name}</th>
-                <td>{value.language}</td>
-                <td>{value.time}</td>
-                <td>@fat</td>
+            {cvListDetail.map(({ cv_detail }, ind) => (
+              <tr key={ind}>
+                <th scope="row">{cv_detail.name}</th>
+                <td>{cv_detail.language}</td>
+                <td>{cv_detail.time}</td>
+                <td>
+                  <Link
+                    className="btn p-1"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-title="Edit"
+                    to={`/update/${cvKeys[ind]}`}
+                  >
+                    <i className="bi bi-pencil-square text-primary h5" />
+                  </Link>
+                  <button
+                    className="btn p-1"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-title="Duplicate"
+                    onClick={() => onDuplicate(ind)}
+                  >
+                    <i className="bi bi-clipboard-fill text-secondary h5" />
+                  </button>
+                  <button
+                    onClick={() => onDelete(ind)}
+                    className="btn p-1"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-title="Delete"
+                  >
+                    <i className="bi bi-trash3-fill text-danger h5" />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

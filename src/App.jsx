@@ -10,8 +10,17 @@ import { Routes, Route } from "react-router-dom";
 import Header2 from "./components/header/Header2";
 import EditAccount from "./components/edit-account/EditAccount";
 import CreateUpdateCV from "./pages/create-update-cv-page/CreateUpdateCV";
+import ErrorPage from "./pages/error-page/ErrorPage";
+// import Formik from "./components/Formik";
 
 function App() {
+  // Tooltip
+  const tooltipTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="tooltip"]'
+  );
+  const tooltipList = [...tooltipTriggerList].map(
+    (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+  );
   return (
     <div className="App">
       <Header />
@@ -21,6 +30,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/editAccount" element={<EditAccount />} />
         <Route path="/cv" element={<CreateUpdateCV />} />
+        <Route path="/update/:id" element={<CreateUpdateCV />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <LanguagesSection />
       <Footer />

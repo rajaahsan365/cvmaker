@@ -2,13 +2,22 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, database } from "../../firebase";
 import { getDateandTime } from "../../assets/utils";
-import { ref, set, push, child, onValue } from "firebase/database";
+import {
+  ref,
+  set,
+  push,
+  child,
+  onValue,
+  remove,
+  update,
+} from "firebase/database";
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [userDetail, setUserDetail] = useState({});
 
+  const [cvListDetail, setCVListDetail] = useState([]);
   const [cvDetail, setCvDetail] = useState({
     name: "",
     language: "",
@@ -26,19 +35,51 @@ const AppProvider = ({ children }) => {
     set(newPostRef, data);
   };
 
-  const getAllValue = async () => {
+  const getAllValue = () => {
     const db = ref(database, "users/ahsan");
-    let val = [];
     const myPromise = new Promise((resolve, reject) => {
       onValue(db, (snapshot) => {
         const key = snapshot.key;
         const data = snapshot.val();
-        val = Object.values(data);
-        resolve(val);
+        resolve(data);
         console.log("🚀 ~ file: Context.jsx ~ line 36 ~ onValue ~ val", data);
       });
     });
     return myPromise;
+  };
+
+  const getRecordById = (id) => {
+    const db = ref(database, "users/ahsan/" + id);
+    const myPromise = new Promise((resolve, reject) => {
+      onValue(db, (snapshot) => {
+        const key = snapshot.key;
+        const data = snapshot.val();
+        resolve(data);
+        console.log("🚀 ~ file: Context.jsx ~ line 36 ~ onValue ~ val", data);
+      });
+    });
+    return myPromise;
+  };
+  const duplicateRecord = (id) => {
+    const db = ref(database, "users/ahsan/" + id);
+    let val = [];
+    onValue(db, (snapshot) => {
+      const key = snapshot.key;
+      const data = snapshot.val();
+      addData(data);
+      console.log("🚀 ~ file: Context.jsx ~ line 36 ~ onValue ~ val", data);
+    });
+  };
+
+  const updateRecord = (id, data) => {
+    update(ref(database, "users/ahsan/" + id), data);
+  };
+
+  const handleDelete = (id, cb = null) => {
+    remove(ref(database, "users/ahsan/" + id));
+    if (typeof cb == "function") {
+      cb(false);
+    }
   };
 
   console.log(userDetail.email);
@@ -64,6 +105,12 @@ const AppProvider = ({ children }) => {
         writeUserData,
         addData,
         getAllValue,
+        cvListDetail,
+        setCVListDetail,
+        handleDelete,
+        updateRecord,
+        duplicateRecord,
+        getRecordById,
       }}
     >
       {children}

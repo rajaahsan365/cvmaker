@@ -1,6 +1,7 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getFieldsByCategory } from "../../assets/utils";
 import { useGlobalContext } from "../../components/context-api/Context";
 import InputForm from "../../components/form/InputForm";
@@ -11,7 +12,7 @@ const CreateUpdateCV = () => {
   const [cvCategoryName, setCvCategoryName] = useState([
     { name: "Basic Information", type: "Basic Information" },
     { name: "Work Experience", type: "Work Experience" },
-    { name: "Qualifications", type: "Qualifications" },
+    { name: "Qualifications", type: "Qualification" },
     { name: "Education", type: "Education" },
     { name: "Interests", type: "Interests" },
     { name: "References", type: "References" },
@@ -22,13 +23,19 @@ const CreateUpdateCV = () => {
     type: false,
   });
 
-  const { cvDetail, setcvListDetail, setCvDetail, writeUserData, addData } =
-    useGlobalContext();
+  const { cvDetail, getRecordById, addData, updateRecord } = useGlobalContext();
 
   const [selectOption, setSelectOption] = useState({
     name: "Basic Information",
     type: "Basic Information",
   });
+
+  const { id } = useParams();
+
+  const getData = {};
+  useEffect(() => {
+    getRecordById(id);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +56,7 @@ const CreateUpdateCV = () => {
       data
     );
 
-    addData(data);
+    id ? updateRecord(id, data) : addData(data);
   };
 
   return (

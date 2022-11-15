@@ -1,0 +1,288 @@
+[
+  {
+    "category": "Basic Information",
+    "label": "Full Name",
+    "name": "full_name",
+    "id": "full_name",
+    "placeholder": "Full Name",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Email Address",
+    "name": "email_address",
+    "inputType": "email",
+    "id": "email_address",
+    "placeholder": "Email Address",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Phone No.",
+    "name": "phone_no",
+    "id": "phone_no",
+    "suggestion": "If you have more than one number, separate with commas",
+    "inputType": "number",
+    "placeholder": "Phone No.",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Websites",
+    "name": "website_links",
+    "id": "website_links",
+    "placeholder": "Websites",
+    "suggestion": "If you have more than one URL, separate with commas",
+    "inputType": "url",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Address Line 1",
+    "name": "address",
+    "id": "address1",
+    "placeholder": "Address Line 1",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Address Line 2",
+    "name": "address",
+    "id": "address2",
+    "placeholder": "Address Line 2",
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Address Line 3",
+    "name": "address",
+    "id": "address3",
+    "placeholder": "Address Line 3",
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Work Experience",
+    "inputType": "fieldArray",
+    "name": "work_experience",
+    "wrapperClass": "col-12",
+    "fields": [
+      {
+        "label": "Job Title",
+        "name": "job_title",
+        "id": "job_title",
+        "placeholder": "Job Title",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Company Name",
+        "name": "company_name",
+        "id": "company_name",
+        "placeholder": "Company Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Start Date",
+        "name": "start_date",
+        "id": "start_date",
+        "placeholder": "Start Date",
+        "suggestion": "Eg: Jan 2005",
+        "inputType": "date",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "End Date",
+        "name": "end_date",
+        "id": "end_date",
+        "placeholder": "End Date",
+        "suggestion": "Eg: Jan 2005,or Present",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Other Information",
+        "name": "other_info",
+        "id": "other_info",
+        "placeholder": "Other Information",
+        "suggestion": "Optional details such as job responsibilites,achievements etc",
+        "inputType": "text-editor",
+        "required": true,
+        "wrapperClass": "col-md-12"
+      }
+    ]
+  },
+
+  {
+    "category": "Qualification",
+    "label": "Qualifications",
+    "name": "qualifications",
+    "id": "qualifications",
+    "placeholder": "Qualifications",
+    "suggestion": "Certifications, accreditions etc. that you have received",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "Education",
+    "inputType": "fieldArray",
+    "name": "education",
+    "wrapperClass": "col-12",
+    "fields": [
+      {
+        "label": "Course Name",
+        "name": "course_name",
+        "id": "course_name",
+        "placeholder": "Course Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Institution Name",
+        "name": "institution_name",
+        "id": "institution_name",
+        "placeholder": "Institution Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Start Date",
+        "name": "start_date",
+        "id": "start_date",
+        "placeholder": "Start Date",
+        "suggestion": "Eg: Jan 2005",
+        "inputType": "date",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "End Date",
+        "name": "end_date",
+        "id": "end_date",
+        "placeholder": "End Date",
+        "suggestion": "Eg: Jan 2005,or Present",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Other Information",
+        "name": "other_info",
+        "id": "other_info",
+        "placeholder": "Other Information",
+        "suggestion": "Optional details such as course description, marks etc.",
+        "inputType": "text-editor",
+        "required": true,
+        "wrapperClass": "col-md-12"
+      }
+    ]
+  },
+  {
+    "category": "Qualifications",
+    "label": "Qualifications",
+    "name": "qualifications",
+    "id": "qualifications",
+    "placeholder": "Qualifications",
+    "suggestion": "Certifications, accreditions etc. that you have received",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+
+  {
+    "category": "Interests",
+    "label": "Interests",
+    "name": "interests",
+    "id": "interests",
+    "placeholder": "Interests",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "References",
+    "label": "References",
+    "name": "references",
+    "id": "references",
+    "placeholder": "References",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "Special Section",
+    "label": "Title",
+    "name": "title",
+    "id": "title",
+    "placeholder": "Title",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "Subtitle",
+    "name": "subtitle",
+    "id": "subtitle",
+    "placeholder": "Subtitle",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "Start Date",
+    "name": "start_date",
+    "id": "start_date",
+    "placeholder": "Start Date",
+    "suggestion": "Eg: Jan 2005",
+    "inputType": "date",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "End Date",
+    "name": "end_date",
+    "id": "end_date",
+    "placeholder": "End Date",
+    "suggestion": "Eg: Jan 2005,or Present",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "Other Information",
+    "name": "other_info",
+    "id": "other_info",
+    "placeholder": "Other Information",
+    "suggestion": "Optional details such as course description, marks etc.",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "Default Section",
+    "label": "New Section",
+    "name": "section",
+    "id": "section",
+    "placeholder": "New Section",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "References",
+    "name": "submit",
+    "type": "submit",
+    "inputType": "button",
+    "children": "Save Resume",
+    "wrapperClass": "col-12 my-5 text-end",
+    "className": "btn-primary text-dark fw-bold px-2",
+    "iconName": "save2-fill"
+  }
+]

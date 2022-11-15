@@ -13,7 +13,14 @@ export const getDateandTime = () => {
 };
 
 export const getArrayValuetoEmptyObject = (arr) => {
-  return arr.reduce((acc, value) => ({ ...acc, [value]: "" }), {});
+  const newArr = arr.filter(({ name }) => name.includes(".") != true);
+  return newArr.reduce(
+    (acc, value) => ({
+      ...acc,
+      [value.name]: value.inputType === "fieldArray" ? [] : "",
+    }),
+    {}
+  );
 };
 
 export const getArrayValuetoValidationObject = (arr, validationNames) => {
