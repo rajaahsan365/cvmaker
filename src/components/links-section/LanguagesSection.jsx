@@ -2,8 +2,8 @@ import React from "react";
 
 const LanguagesSection = () => {
   return (
-    <div className="d-md-flex justify-content-evenly align-items-center py-5">
-      <div>
+    <div className="row justify-content-between align-items-center p-5">
+      <div className="col-sm-4 text-center mt-2">
         <ul className="list-unstyled">
           <li>
             <i className="bi bi-lock pe-3 text-danger" />
@@ -19,7 +19,7 @@ const LanguagesSection = () => {
           </li>
         </ul>
       </div>
-      <div className="w-50">
+      <div className="col-sm-4 text-center mt-2">
         <p>
           English العربية Български Čeština Dansk Deutsch Eesti keel ქართული
           Dutch Español فارسی Français Galician Έλληνικά Hrvatski Hungarian
@@ -28,7 +28,7 @@ const LanguagesSection = () => {
           Tiếng Việt മലയാളം 中文 繁體中文
         </p>
       </div>
-      <div>
+      <div className="col-sm-4 text-center mt-2">
         <ul className="list-unstyled">
           <li>
             <h5>Links</h5>

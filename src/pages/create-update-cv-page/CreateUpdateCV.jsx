@@ -3,31 +3,37 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-  getFieldsByCategory,
-  getFormInitialValue,
-  getFormValidationObject,
+  getDateandTime
 } from "../../assets/utils";
+import {getFieldsByCategory,
+  getFormInitialValue,
+  getFormValidation} from "../../components/form/utility/formUtils"
 import { useGlobalContext } from "../../components/context-api/Context";
-import InputForm from "../../components/form/InputForm";
 import Header2 from "../../components/header/Header2";
 import cvFormFields from "../../Json-Form/CVForm.json";
-
+import CreateCVModal from "../../components/create-cv-modal/CreateCVModal";
+import CvDownloadModal from "../../components/context-api/cvdownload-modal/CvDownloadModal";
+import FormContainer from "../../components/form/FormContainer";
 const CreateUpdateCV = () => {
-  const [cvCategoryName, setCvCategoryName] = useState([
+  const cvCategoryName = [
     { name: "Basic Information", type: "Basic Information" },
     { name: "Work Experience", type: "Work Experience" },
-    { name: "Qualifications", type: "Qualification" },
     { name: "Education", type: "Education" },
-    { name: "Interests", type: "Interests" },
+    { name: "Social", type: "Social" },
+    { name: "Skills", type: "Skills" },
+    { name: "Hobbies", type: "Hobbies" },
     { name: "References", type: "References" },
-  ]);
+  ];
 
-  const [sectionForm, setSectionForm] = useState({
-    name: "",
-    type: false,
-  });
-
-  const { cvDetail, getRecordById, addData, updateRecord } = useGlobalContext();
+  const {
+    cvDetail,
+    setCvDetail,
+    getRecordById,
+    addData,
+    updateRecord,
+    cvListDetail,
+    setCVListDetail,
+  } = useGlobalContext();
 
   const [selectOption, setSelectOption] = useState({
     name: "Basic Information",
@@ -36,26 +42,16 @@ const CreateUpdateCV = () => {
 
   const { id } = useParams();
 
-  const getData = {};
   useEffect(() => {
     getRecordByApi();
   }, [id]);
 
+  const [cvRecord, setCvRecord] = useState({});
+
   const getRecordByApi = async () => {
     const data = await getRecordById(id);
-    console.log(
-      "🚀 ~ file: CreateUpdateCV.jsx ~ line 46 ~ getRecordByApi ~ data",
-      data
-    );
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const addObj = {
-      name: sectionForm.name,
-      type: sectionForm.type ? "Special Section" : "Default Section",
-    };
-    setCvCategoryName([...cvCategoryName, addObj]);
+    setCvRecord({ ...data.cv_content });
+    setCvDetail({ ...data.cv_detail });
   };
 
   const onFormSubmit = (value) => {
@@ -63,37 +59,38 @@ const CreateUpdateCV = () => {
       cv_detail: cvDetail,
       cv_content: value,
     };
-    console.log(
-      "🚀 ~ file: CreateUpdateCV.jsx ~ line 43 ~ onFormSubmit ~ data",
-      data
-    );
 
     id ? updateRecord(id, data) : addData(data);
+    setCvRecord(value);
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setCvDetail({
+      time: getDateandTime(),
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
     <div className="container">
-      <Header2 />
-      <h1>{cvDetail.name}</h1>
-      {/* button group */}
-      <div className="text-end">
-        <button className="btn btn-success">
-          Upgrade to Premium <i className="bi bi-heart-fill" />
-        </button>
-        <button className="btn btn-secondary ms-4">
-          Help <i className="bi bi-info-circle" />
-        </button>
-        <button className="btn btn-secondary ms-4">
-          Quick Preview <i className="bi bi-search" />
-        </button>
-        <button className="btn btn-secondary ms-4">
-          Save <i className="bi bi-file-earmark-fill" />
-        </button>
-        <button className="btn btn-secondary ms-4">
-          Save & Download <i className="bi bi-save-fill" />
-        </button>
-      </div>
+      <Header2 color="dark" />
 
+      <div className="d-flex form-group align-items-center">
+        <div className=" h5">Resume Name:</div>
+        <div className="ms-2">
+          <input
+            type="text"
+            className="form-control"
+            name="name"
+            value={cvDetail.name}
+            id="name"
+            required
+            placeholder="Resume Name"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+      </div>
       {/* form section */}
       <section className="row border rounded my-4 p-md-5 p-2">
         {/* left side */}
@@ -104,113 +101,50 @@ const CreateUpdateCV = () => {
                 className={`list-group-item btn text-start ${
                   name == selectOption.name ? "active" : ""
                 }`}
-                onClick={() => setSelectOption({ ...selectOption, name, type })}
+                onClick={() => setSelectOption({ name, type })}
                 key={ind}
               >
                 {name}
               </li>
             ))}
           </ul>
-          <button
-            className="btn btn-secondary my-3"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            <i className="bi bi-plus" />
-            Add New Section
-          </button>
         </div>
         {/* right side */}
         <div className="right col-md-9 col-6">
           <p className="fs-4">{selectOption.name}</p>
-          <InputForm
-            initialFieldValues={getFormInitialValue(cvFormFields)}
+          <FormContainer
+            // initialFieldValues={getFormInitialValue(cvFormFields)}
+            initialFieldValues={
+              id != undefined ? cvRecord : getFormInitialValue(cvFormFields)
+            }
             formData={getFieldsByCategory(cvFormFields, selectOption.type)}
+            // withValidation={true}
+            // formValidation={getFormValidationObject(cvFormFields)}
             onFormSubmit={onFormSubmit}
-          />
+          >
+            {/* button group */}
+            <div className="text-md-end mt-5">
+              <button className="btn btn-primary ms-2 mb-2" type="submit">
+                Save <i className="bi bi-file-earmark-fill" />
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-danger ms-2 mb-2"
+                data-bs-toggle="modal"
+                data-bs-target="#cvdownloadmodal"
+                // onClick={() => onFormSubmit()}
+              >
+                <i className="bi bi-eye me-1" />
+                Preview and Download
+              </button>
+            </div>
+          </FormContainer>
         </div>
       </section>
 
-      {/* <!-- Modal --> */}
-      <div
-        className="modal fade form"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <form
-            className="form modal-content"
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Add New Section
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            {/* body */}
-            <div className="modal-body">
-              <div className="my-3">
-                <label htmlFor="section_name">Section Name</label>
-                <br />
-                <input
-                  type="text"
-                  name="section_name"
-                  id="section_name"
-                  className="form-control my-2"
-                  onChange={(e) =>
-                    setSectionForm({ ...sectionForm, name: e.target.value })
-                  }
-                  value={sectionForm.name}
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="checkbox"
-                  className="form-check-input me-2"
-                  checked={sectionForm.type}
-                  onChange={(e) =>
-                    e.target.checked &&
-                    setSectionForm({
-                      ...sectionForm,
-                      type: true,
-                    })
-                  }
-                  value={sectionForm.type}
-                />
-
-                <label htmlFor="check">
-                  Special section (like Education, Work)
-                </label>
-              </div>
-            </div>
-            {/* footer */}
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
-                Ok
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+      {/* Download Cv */}
+      <CvDownloadModal cvRecord={cvRecord} />
     </div>
   );
 };

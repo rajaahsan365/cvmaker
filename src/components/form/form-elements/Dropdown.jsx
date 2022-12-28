@@ -1,18 +1,42 @@
 import React from "react";
 import Select from "react-select";
-const Dropdown = ({ isMulti, onChange, ...otherProps }) => {
+const Dropdown = (props) => {
+  const {
+    name,
+    inputType,
+    placeholder = "",
+    required = false,
+    id = "",
+    fieldClass = "",
+    options = [],
+    fieldStyle = "",
+    disabled = false,
+    value,
+    isMulti = "",
+    onChange,
+    ...other
+  } = props;
+
   const handleChange = (value) => {
-    // this is going to call setFieldValue and manually update values.topcis
-    onChange(otherProps.name, value);
+    onChange(name, value);
   };
   return (
     <>
       <Select
         isMulti={isMulti ? isMulti : false}
-        // className="basic-multi-select"
-        // classNamePrefix="select"
+        id={id}
+        required={required}
+        placeholder={placeholder ? placeholder : "Select"}
+        style={fieldStyle ? fieldStyle : {}}
+        // className={fieldClass}
+        disabled={disabled}
+        options={options}
+        // getOptionLabel={option => option.name}
+        // getOptionValue={option => option.id}
+        className="basic-multi-select"
+        classNamePrefix="select"
         onChange={handleChange}
-        {...otherProps}
+        {...other}
       />
     </>
   );

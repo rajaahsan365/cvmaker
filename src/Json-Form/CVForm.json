@@ -1,102 +1,92 @@
 [
   {
     "category": "Basic Information",
-    "label": "Full Name",
-    "name": "full_name",
-    "id": "full_name",
-    "placeholder": "Full Name",
+    "label": "First Name",
+    "name": "first_name",
+    "id": "first_name",
+    "placeholder": "First Name",
+    "validationtype": "name",
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "Last Name",
+    "name": "last_name",
+    "id": "last_name",
+    "validationtype": "name",
+    "placeholder": "Last Name",
     "required": true,
     "wrapperClass": "col-md-6"
   },
   {
     "category": "Basic Information",
-    "label": "Gender",
-    "name": "gender",
-    "options": [
-      {
-        "label": "Male",
-        "value": "male"
-      },
-      {
-        "label": "Female",
-        "value": "female"
-      }
-    ],
-    "inputType": "radio",
-    "isMulti": true,
+    "label": "Email",
+    "name": "email",
+    "inputType": "email",
+    "id": "email",
+    "validationtype": "email",
+    "placeholder": "Email",
+    "required": true,
     "wrapperClass": "col-md-6"
   },
   {
     "category": "Basic Information",
-    "label": "Hobbies",
-    "name": "hobbies",
-    "options": [
-      {
-        "label": "Football",
-        "value": "football"
-      },
-      {
-        "label": "Cricket",
-        "value": "cricket"
-      },
-      {
-        "label": "Novels",
-        "value": "novels"
-      },
-      {
-        "label": "Hockey",
-        "value": "hockey"
-      }
-    ],
-    "inputType": "checkbox",
-    "isMulti": true,
+    "label": "Phone No.",
+    "name": "phone_no",
+    "id": "phone_no",
+    "inputType": "number",
+    "placeholder": "Phone No.",
+    "required": true,
     "wrapperClass": "col-md-6"
   },
   {
     "category": "Basic Information",
-    "label": "choices",
-    "name": "choices",
-    "options": [
-      {
-        "label": "Choice 1",
-        "value": "choice1"
-      },
-      {
-        "label": "Choice 2",
-        "value": "choice2"
-      },
-      {
-        "label": "Choice 3",
-        "value": "choice3"
-      },
-      {
-        "label": "Choice 4",
-        "value": "choice4"
-      }
-    ],
-    "inputType": "select",
-    "isMulti": true,
+    "label": "Address",
+    "name": "address",
+    "id": "address",
+    "placeholder": "Address",
+    "required": true,
     "wrapperClass": "col-md-6"
   },
   {
     "category": "Basic Information",
+    "label": "Religion",
+    "name": "religion",
+    "id": "religion",
+    "placeholder": "Religion",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Basic Information",
+    "label": "About YourSelf",
+    "name": "about_you",
+    "id": "about_you",
+    "placeholder": "About YourSelf",
+    "suggestion": "Optional details such as course description, marks etc.",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "Work Experience",
     "inputType": "fieldArray",
-    "name": "education",
+    "name": "experiences",
     "wrapperClass": "col-12",
-    "fields": [
+    "childs": [
       {
-        "label": "Course Name",
-        "name": "course_name",
-        "id": "course_name",
-        "placeholder": "Course Name",
+        "label": "Job Title",
+        "name": "job_title",
+        "id": "job_title",
+        "placeholder": "Job Title",
         "required": true,
         "wrapperClass": "col-md-6"
       },
       {
-        "label": "Institution Name",
-        "name": "institution_name",
-        "id": "institution_name",
-        "placeholder": "Institution Name",
+        "label": "Company Name",
+        "name": "company_name",
+        "id": "company_name",
+        "placeholder": "Company Name",
         "required": true,
         "wrapperClass": "col-md-6"
       },
@@ -120,10 +110,63 @@
         "wrapperClass": "col-md-6"
       },
       {
-        "label": "Other Information",
-        "name": "other_info",
-        "id": "other_info",
-        "placeholder": "Other Information",
+        "label": "Job Description",
+        "name": "job_description",
+        "id": "job_description",
+        "placeholder": "Job Description",
+        "suggestion": "Optional details such as job responsibilites,achievements etc",
+        "inputType": "text-editor",
+        "required": true,
+        "wrapperClass": "col-md-12"
+      }
+    ]
+  },
+  {
+    "category": "Education",
+    "inputType": "fieldArray",
+    "name": "educations",
+    "wrapperClass": "col-12",
+    "childs": [
+      {
+        "label": "Institution Name",
+        "name": "institute_name",
+        "id": "institute_name",
+        "placeholder": "Institution Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Degree Name",
+        "name": "degree_name",
+        "id": "degree_name",
+        "placeholder": "Degree Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Start Date",
+        "name": "start_date",
+        "id": "start_date",
+        "placeholder": "Start Date",
+        "suggestion": "Eg: Jan 2005",
+        "inputType": "date",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "End Date",
+        "name": "end_date",
+        "id": "end_date",
+        "placeholder": "End Date",
+        "suggestion": "Eg: Jan 2005,or Present",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Subjects",
+        "name": "subjects",
+        "id": "subjects",
+        "placeholder": "Subjects",
         "suggestion": "Optional details such as course description, marks etc.",
         "inputType": "text-editor",
         "required": true,
@@ -131,19 +174,67 @@
       }
     ]
   },
-
   {
-    "category": "Basic Information",
-    "label": "Interests",
-    "name": "interests",
-    "id": "interests",
-    "placeholder": "Interests",
+    "category": "Skills",
+    "inputType": "fieldArray",
+    "name": "skills",
+    "wrapperClass": "col-12",
+    "childs": [
+      {
+        "label": "Skill Name",
+        "name": "name",
+        "id": "name",
+        "placeholder": "Skill Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Rate YourSelf",
+        "name": "value",
+        "type": "number",
+        "suggestion": "Only Number is allowed between 0-100",
+        "id": "value",
+        "placeholder": "Rate YourSelf",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      }
+    ]
+  },
+  {
+    "category": "Social",
+    "inputType": "fieldArray",
+    "name": "social_links",
+    "wrapperClass": "col-12",
+    "childs": [
+      {
+        "label": "Social Account Name",
+        "name": "name",
+        "id": "name",
+        "placeholder": "Social Account Name",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      },
+      {
+        "label": "Social Account Link",
+        "name": "value",
+        "id": "value",
+        "placeholder": "Social Account Link",
+        "required": true,
+        "wrapperClass": "col-md-6"
+      }
+    ]
+  },
+  {
+    "category": "Hobbies",
+    "label": "Hobbies",
+    "name": "hobbies",
+    "id": "hobbies",
+    "placeholder": "Hobbies",
     "inputType": "text-editor",
-    "required": true,
     "wrapperClass": "col-md-12"
   },
   {
-    "category": "Basic Information",
+    "category": "References",
     "label": "Reference",
     "name": "reference",
     "id": "reference",
@@ -153,13 +244,63 @@
     "wrapperClass": "col-md-12"
   },
   {
-    "category": "Basic Information",
-    "name": "submit",
-    "type": "submit",
-    "inputType": "button",
-    "children": "Save Resume",
-    "wrapperClass": "col-12 my-5 text-end",
-    "className": "btn-primary text-dark fw-bold px-2",
-    "iconName": "save2-fill"
+    "category": "Special Section",
+    "label": "Title",
+    "name": "title",
+    "id": "title",
+    "placeholder": "Title",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "Subtitle",
+    "name": "subtitle",
+    "id": "subtitle",
+    "placeholder": "Subtitle",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "Start Date",
+    "name": "start_date",
+    "id": "start_date",
+    "placeholder": "Start Date",
+    "suggestion": "Eg: Jan 2005",
+    "inputType": "date",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "End Date",
+    "name": "end_date",
+    "id": "end_date",
+    "placeholder": "End Date",
+    "suggestion": "Eg: Jan 2005,or Present",
+    "required": true,
+    "wrapperClass": "col-md-6"
+  },
+  {
+    "category": "Special Section",
+    "label": "Other Information",
+    "name": "other_info",
+    "id": "other_info",
+    "placeholder": "Other Information",
+    "suggestion": "Optional details such as course description, marks etc.",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
+  },
+  {
+    "category": "Default Section",
+    "label": "New Section",
+    "name": "section",
+    "id": "section",
+    "placeholder": "New Section",
+    "inputType": "text-editor",
+    "required": true,
+    "wrapperClass": "col-md-12"
   }
 ]

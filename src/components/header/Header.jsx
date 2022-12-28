@@ -3,40 +3,37 @@ import { Link } from "react-router-dom";
 import { objectIsEmpty } from "../../assets/utils";
 import { auth } from "../../firebase";
 import { useGlobalContext } from "../context-api/Context";
+import { toast } from "react-toastify";
 
 const Header = () => {
-  const { userDetail } = useGlobalContext();
+  const { userDetail, setCVListDetail } = useGlobalContext();
 
   const logout = () => {
     auth
       .signOut()
       .then(function () {
         // Sign-out successful.
-        console.log(
-          "🚀 ~ file: LoginSignupPage.jsx ~ line 60 ~ Sign-out successful."
-        );
+        toast.success("Logout Successfully");
+        setCVListDetail([]);
       })
       .catch(function (error) {
-        console.log(
-          "🚀 ~ file: LoginSignupPage.jsx ~ line 63 ~ logout ~ error",
-          error
-        );
+        toast.error(error);
         // An error happened.
       });
   };
   return (
     <header className="bg-dark ">
       <div className="container">
-        <div className="row">
-          <section className="col-3 align-items-center">
+        <div className="row p-2">
+          <section className="col-sm-6 align-items-center text-sm-start text-center mt-2 ">
             <Link className="text-light" to={"/"}>
               Create, maintain, publish, and share your CVs for free
             </Link>
           </section>
 
-          <section className="col-9 d-flex justify-content-end align-items-center">
-            <ul className="nav navbar navbar-left d-flex d-inline-flex">
-              <li>
+          <section className="col-sm-6 d-flex justify-content-center justify-content-md-end">
+            <ul className="nav navbar navbar-left d-sm-flex d-inline-flex">
+              {/* <li>
                 <select
                   className="form-select bg-dark text-light border-0 shadow-none"
                   defaultValue={""}
@@ -48,19 +45,16 @@ const Header = () => {
                   <option value="urdu">Urdu</option>
                   <option value="chinese">Chinese</option>
                 </select>
-              </li>
+              </li> */}
 
               {!objectIsEmpty(userDetail) ? (
                 <>
-                  <li>{userDetail?.email}</li>
                   <li>
                     <Link to="/dashboard" className="h5 text-success">
-                      Upgrade to Premium <i className="bi bi-star-fill" />
+                      Dashboard
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/editAccount">Edit Account</Link>
-                  </li>
+                  <li>{userDetail?.email}</li>
                   <li>
                     <button
                       className="btn text-white"

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header2 from "../../components/header/Header2";
+import { toast } from "react-toastify";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,69 +10,69 @@ import { useNavigate } from "react-router-dom";
 
 import loginFields from "../../Json-Form/LoginForm.json";
 import signupFields from "../../Json-Form/SignUpForm.json";
-import InputForm from "../../components/form/InputForm";
-import {
-  getFormInitialValue,
-  getFormValidationObject,
-} from "../../assets/utils";
+import FormContainer from "../../components/form/FormContainer";
+import {getFormInitialValue,getFormValidation} from "../../components/form/utility/formUtils"
+
 
 const LoginSignupPage = () => {
-  const signInUser = (data) => {
+  const signInUser = (data, { resetForm }) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((res) => {
+        resetForm();
+        toast.success("Signup Successfully");
         navigate("/");
       })
       .catch((err) => {
-        const errorMessage = error.message;
-        setError((error.signUpError = errorMessage));
+        toast.error("Error " + err.message);
       });
   };
 
   const navigate = useNavigate();
 
-  const loginUser = ({ email, password }) => {
+  const loginUser = ({ email, password }, { resetForm }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        resetForm();
+        toast.success("Login Successfully");
         navigate("/");
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        setError((error.loginError = errorMessage));
+        toast.error("Error " + error.message);
       });
   };
 
   return (
     <>
-      <Header2 />
-      <div className="container vh-75">
+      <Header2 color="dark" />
+      <div className=" vh-75">
         {/* form section */}
-        <div className="d-flex py-3">
+        <div className="row p-5 justify-content-center">
           {/*Login section */}
-          <div className="login p-5 border rounded rounded-3 w-50 me-3">
+          <div className="login p-3 border rounded rounded-3 col-md-5 m-1">
             <p className="py-2">Member login</p>
             {/* Login Form------------------------------------------------
                                         -------------------------------------------- */}
 
-            <InputForm
+            <FormContainer
               initialFieldValues={getFormInitialValue(loginFields)}
               formData={loginFields}
               withValidation={true}
-              formValidation={getFormValidationObject(loginFields)}
+              formValidation={getFormValidation(loginFields)}
               onFormSubmit={loginUser}
             />
           </div>
 
           {/* signup section */}
-          <div className="signup p-5 border rounded rounded-3 w-50">
+          <div className="signup p-5 border rounded rounded-3 col-md-5 m-1">
             <p className="py-2"> Not a member yet? Join now</p>
 
             {/* SignUp Form */}
-            <InputForm
+            <FormContainer
               initialFieldValues={getFormInitialValue(signupFields)}
               formData={signupFields}
-              formValidation={getFormValidationObject(signupFields)}
+              formValidation={getFormValidation(signupFields)}
               withValidation={true}
               onFormSubmit={signInUser}
             />

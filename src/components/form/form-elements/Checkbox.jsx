@@ -1,30 +1,48 @@
+import { FastField } from "formik";
 import React from "react";
 
-const Checkbox = ({ name, options, parentClass, ...otherProps }) => {
+const CheckBox = (props) => {
+  const {
+    name,
+    inputType,
+    placeholder = "",
+    required = false,
+    id = "",
+    fieldClass = "",
+    options = [],
+    fieldStyle = "",
+    disabled = false,
+    value,
+    ...other
+  } = props;
   return (
-    <>
-      <div className={`form-check ${parentClass ? parentClass : "d-flex "}`}>
-        {options.map((ind, key) => {
-          return (
-            <div className="me-5" key={key}>
-              <input
-                type="checkbox"
-                className="form-check-input"
-                name={name}
-                value={ind.value}
-                id={ind.value}
-                {...otherProps}
-              />
+    <div style={{ display: "flex" }}>
+      {options.map((ind, key) => {
+        return (
+          <div className="" style={{ marginRight: "5px" }} key={key}>
+            <FastField
+              type={inputType}
+              className={`form-check-input ${fieldClass}`}
+              name={name}
+              value={ind.value}
+              checked={
+                Array.isArray(value)
+                  ? value.includes(ind.value)
+                  : value == ind.value
+              }
+              // id={ind.value}
+              style={fieldStyle ? fieldStyle : {}}
+              disabled={disabled}
+            />
 
-              <label htmlFor={ind.value} className="form-check-label ">
-                {ind.label}
-              </label>
-            </div>
-          );
-        })}
-      </div>
-    </>
+            <label htmlFor={ind.value} className="form-check-label">
+              {ind.label}
+            </label>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
-export default Checkbox;
+export default CheckBox;

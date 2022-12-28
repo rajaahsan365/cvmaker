@@ -1,5 +1,4 @@
 import React from "react";
-
 const Password = ({ ...props }) => {
   //
   const [passwordType, setPasswordType] = React.useState("password");

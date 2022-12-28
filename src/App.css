@@ -1,0 +1,19 @@
+#cellExpand tr td,th{
+    width:100px;
+    height: 30px;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    background-color: black;
+    border-radius: 50%; 
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .Toastify__toast-container{
+      width: 200vw;
+    }
+  }

@@ -1,9 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context-api/Context";
 
 const CreateCVModal = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(true);
   const {
     cvListDetail,
     setCVListDetail,
@@ -14,15 +16,24 @@ const CreateCVModal = () => {
 
   const navigate = useNavigate();
 
+  const handleModal = () => {
+    setModalIsOpen(false);
+    navigate(-1);
+  };
+
   const ref = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(cvDetail);
     setCVListDetail({ ...cvListDetail, [cvDetail.name]: cvDetail });
-    navigate("/cv");
   };
   return (
-    <div className="modal" tabIndex="-1" id="exampleModal">
+    <div
+      className="modal"
+      tabIndex="-1"
+      id="exampleModal"
+      style={{ display: modalIsOpen ? "block" : "none" }}
+    >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
@@ -32,6 +43,7 @@ const CreateCVModal = () => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={() => handleModal()}
             ></button>
           </div>
           {/* body */}
@@ -101,6 +113,7 @@ const CreateCVModal = () => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
+                onClick={() => handleModal()}
               >
                 Cancel
               </button>
@@ -108,6 +121,7 @@ const CreateCVModal = () => {
                 type="submit"
                 data-bs-dismiss="modal"
                 className="btn btn-primary"
+                onClick={() => setModalIsOpen(false)}
               >
                 Ok
               </button>

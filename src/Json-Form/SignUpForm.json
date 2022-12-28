@@ -30,8 +30,7 @@
     "name": "submit",
     "inputType": "button",
     "type": "submit",
-    "buttonType": "submit",
-    "children": "SignUp",
+    "buttonName": "SignUp",
     "wrapperClass": "btn-wrapper my-4 text-center",
     "className": "btn-success px-3"
   }

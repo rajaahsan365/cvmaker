@@ -1,18 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CreateCVModal from "../../components/create-cv-modal/CreateCVModal";
 import CvListTable from "../../components/cv-list-table/CvListTable";
 
 const DashboardPage = () => {
   const [accordianIsOpen, setAccordianIsOpen] = useState(true);
+  const navigate = useNavigate();
 
   return (
-    <div className="container my-5">
+    <div className="container my-5 vh-100">
       <p className="my-4">Your CVs</p>
       <button
         className="btn btn-primary"
         type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        onClick={() => navigate("/cv")}
       >
         create a new cv
       </button>
@@ -23,7 +24,7 @@ const DashboardPage = () => {
       <CvListTable />
 
       {/* Accordian SEction */}
-      <div className="accordian d-flex justify-content-center my-5">
+      {/* <div className="accordian d-flex justify-content-center my-5">
         <div className="accordion-item border border-1 p-5 w-50">
           <h2 className="accordion-header" id="headingOne">
             <button
@@ -115,8 +116,7 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
-      </div>
-      <CreateCVModal />
+      </div> */}
     </div>
   );
 };

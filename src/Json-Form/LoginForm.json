@@ -21,8 +21,7 @@
     "name": "submit",
     "inputType": "button",
     "type": "submit",
-    "buttonType": "submit",
-    "children": "Login",
+    "buttonName": "Login",
     "wrapperClass": "btn-wrapper my-4 text-center",
     "className": "btn-primary px-3"
   }
