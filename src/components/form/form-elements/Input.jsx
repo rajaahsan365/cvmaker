@@ -1,30 +1,30 @@
 import { ErrorMessage, FastField } from "formik";
 import React from "react";
+import GenerateFields from "../GenerateFields";
 
 const Input = (props) => {
   const {
-    name,
+    className = "",
     inputType = "text",
-    placeholder = "",
-    required = false,
-    id = "",
-    fieldClass = "",
-    fieldStyle = "",
-    disabled = false,
+    conditionalFields = "",
+    formActions,
     ...other
   } = props;
   return (
-    <FastField
-      name={name}
-      id={id}
-      type={inputType}
-      required={required}
-      placeholder={placeholder}
-      style={fieldStyle ? fieldStyle : {}}
-      className={`form-control ${fieldClass}`}
-      disabled={disabled}
-      {...other}
-    />
+    <>
+      <FastField
+        type={inputType}
+        className={`form-control ${className}`}
+        {...other}
+      />
+
+      {/* {conditionalFields && other.values && (
+        <GenerateFields
+          inputAttributes={[conditionalFields.male]}
+          formActions={formActions} 
+        />
+      )} */}
+    </>
   );
 };
 

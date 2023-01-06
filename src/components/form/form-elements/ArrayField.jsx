@@ -1,9 +1,12 @@
-import { Field, FieldArray } from "formik";
+import { FieldArray } from "formik";
 import React from "react";
-import FormikControl from "../FormikControl";
+import GenerateFields from "../GenerateFields";
+import { getFormInitialValue } from "../utility/formUtils";
 
 const ArrayField = (props) => {
-  const { name, childs = "", withValidation = false } = props;
+  const { name, childs = "", withValidation } = props;
+
+  const pushObject=getFormInitialValue(childs)
   return (
     <FieldArray
       name={props.name}
@@ -20,73 +23,28 @@ const ArrayField = (props) => {
           values,
         } = form;
         return (
-          <>
+          <div className="px-3">
             {Array.isArray(values[props.name]) &&
               values[props.name].map((val, indNum) => (
-                <div key={indNum} className="row">
+                <div className="row border rounded py-2 my-2" key={indNum}>
                   {childs &&
                     childs.map(
                       (
-                        {
-                          wrapperClass,
-                          label,
-                          name,
-                          suggestion = "",
-                          ...formAttributes
-                        },
+                        fieldAttribute,
                         index
                       ) => {
+                        const {name,id=""}=fieldAttribute
+                        const newId=id?`${props.name}.${indNum}.${name}`:""
+                        const newName=`${props.name}.${indNum}.${name}`
+                        fieldAttribute={...fieldAttribute,name:newName,id:newId}
                         return (
-                          <React.Fragment key={index}>
-                            {formAttributes.inputType === "hidden" ? (
-                              <input
-                                type={"hidden"}
-                                attributes={formAttributes}
-                              />
-                            ) : (
-                              <div
-                                className={`field-wrapper align-center ${
-                                  wrapperClass ? wrapperClass : "col-6"
-                                }`}
-                              >
-                                {label && (
-                                  <label className={`h5 m-2`} htmlFor={name}>
-                                    {label}
-                                  </label>
-                                )}
-                                <div
-                                  className={
-                                    formAttributes.className
-                                      ? formAttributes.className
-                                      : ""
-                                  }
-                                >
-                                  <FormikControl
-                                    onChange={
-                                      formAttributes.inputType === "select"
-                                        ? setFieldValue
-                                        : handleChange
-                                    }
-                                    name={`${props.name}.${indNum}.${name}`}
-                                    value={values[props.name][indNum][name]}
-                                    {...formAttributes}
-                                  />
-                                  {suggestion && (
-                                    <span className="lead mb-0">
-                                      <small>{suggestion}</small>
-                                    </span>
-                                  )}
-                                  {withValidation && (
-                                    <ErrorMessage
-                                      style={{ color: "red" }}
-                                      name={name}
-                                      component="p"
-                                    />
-                                  )}
-                                </div>
-                              </div>
-                            )}
-                          </React.Fragment>
+                          <GenerateFields
+                            inputAttributes={fieldAttribute}
+                            key={index}
+                            formActions={form}
+                            value={values[props.name][indNum][name]}
+                            withValidation={withValidation}
+                          />
                         );
                       }
                     )}
@@ -107,11 +65,11 @@ const ArrayField = (props) => {
             <button
               className="btn btn-success my-1"
               type="button"
-              onClick={() => push("")}
+              onClick={() => push(pushObject)}
             >
               + Add New Section
             </button>
-          </>
+          </div>
         );
       }}
     />

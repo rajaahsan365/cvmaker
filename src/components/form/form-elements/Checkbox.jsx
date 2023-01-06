@@ -1,47 +1,49 @@
 import { FastField } from "formik";
 import React from "react";
+import { getConditionalFields } from "../utility/formUtils";
 
 const CheckBox = (props) => {
   const {
-    name,
     inputType,
-    placeholder = "",
-    required = false,
+    className = "",
+    formActions = {},
+    conditionalFields = "",
     id = "",
-    fieldClass = "",
     options = [],
-    fieldStyle = "",
-    disabled = false,
     value,
+    withValidation,
     ...other
   } = props;
-  return (
-    <div style={{ display: "flex" }}>
-      {options.map((ind, key) => {
-        return (
-          <div className="" style={{ marginRight: "5px" }} key={key}>
-            <FastField
-              type={inputType}
-              className={`form-check-input ${fieldClass}`}
-              name={name}
-              value={ind.value}
-              checked={
-                Array.isArray(value)
-                  ? value.includes(ind.value)
-                  : value == ind.value
-              }
-              // id={ind.value}
-              style={fieldStyle ? fieldStyle : {}}
-              disabled={disabled}
-            />
 
-            <label htmlFor={ind.value} className="form-check-label">
-              {ind.label}
-            </label>
-          </div>
-        );
-      })}
-    </div>
+  const { values } = formActions;
+
+  return (
+    <>
+      <div className="d-flex flex-wrap">
+        {options.map((ind, key) => {
+          return (
+            <div className="p-0 me-3" key={key}>
+              <FastField
+                type={inputType}
+                className={`form-check-input ${className}`}
+                value={ind.value}
+                checked={
+                  Array.isArray(value)
+                    ? value.includes(ind.value)
+                    : value == ind.value
+                }
+                {...other}
+              />
+              <label htmlFor={ind.value} className="form-check-label ms-1">
+                {ind.label}
+              </label>
+            </div>
+          );
+        })}
+      </div>
+
+      {conditionalFields && getConditionalFields(values[other.name],conditionalFields,formActions,withValidation)}
+    </>
   );
 };
 

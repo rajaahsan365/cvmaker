@@ -6,7 +6,10 @@
     "inputType": "email",
     "placeholder": "Email",
     "wrapperClass": "col-12",
-    "validationtype": "email"
+    "validations": {
+      "type": "email",
+      "required": true
+    }
   },
   {
     "label": "Password",
@@ -15,13 +18,17 @@
     "id": "password",
     "placeholder": "Your Password",
     "wrapperClass": "col-12",
-    "validationtype": "password"
+    "validations": {
+      "type": "password",
+      "required": true,
+      "min": 6,
+      "max": 10
+    }
   },
   {
     "name": "submit",
-    "inputType": "button",
-    "type": "submit",
-    "buttonName": "Login",
+    "inputType": "submit",
+    "btnText": "Login",
     "wrapperClass": "btn-wrapper my-4 text-center",
     "className": "btn-primary px-3"
   }

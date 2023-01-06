@@ -5,15 +5,13 @@ import { useParams } from "react-router-dom";
 import {
   getDateandTime
 } from "../../assets/utils";
-import {getFieldsByCategory,
-  getFormInitialValue,
-  getFormValidation} from "../../components/form/utility/formUtils"
 import { useGlobalContext } from "../../components/context-api/Context";
 import Header2 from "../../components/header/Header2";
 import cvFormFields from "../../Json-Form/CVForm.json";
 import CreateCVModal from "../../components/create-cv-modal/CreateCVModal";
 import CvDownloadModal from "../../components/context-api/cvdownload-modal/CvDownloadModal";
 import FormContainer from "../../components/form/FormContainer";
+import { getFieldsByCategory } from "../../components/form/utility/formUtils";
 const CreateUpdateCV = () => {
   const cvCategoryName = [
     { name: "Basic Information", type: "Basic Information" },
@@ -113,13 +111,11 @@ const CreateUpdateCV = () => {
         <div className="right col-md-9 col-6">
           <p className="fs-4">{selectOption.name}</p>
           <FormContainer
-            // initialFieldValues={getFormInitialValue(cvFormFields)}
             initialFieldValues={
-              id != undefined ? cvRecord : getFormInitialValue(cvFormFields)
+              id != undefined ? cvRecord : cvFormFields
             }
             formData={getFieldsByCategory(cvFormFields, selectOption.type)}
-            // withValidation={true}
-            // formValidation={getFormValidationObject(cvFormFields)}
+            formValidation={cvFormFields}
             onFormSubmit={onFormSubmit}
           >
             {/* button group */}

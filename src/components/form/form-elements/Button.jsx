@@ -1,10 +1,17 @@
 import React from "react";
-const Button = ({ className = "", buttonName, ...props }) => {
-  const buttonClass = `btn ${className}`;
+
+const Button = (props) => {
+  const {
+    className = "btn-success",
+    btnText = "Submit",
+    inputType = "submit",
+    formActions,
+    value,
+    ...other
+  } = props;
   return (
-    <button className={buttonClass} {...props}>
-      {props?.iconname && <i className={`bi bi-${props.iconname} me-2`} />}
-      {buttonName}
+    <button type={inputType} className={`btn ${className}`} {...other}>
+      {btnText}
     </button>
   );
 };

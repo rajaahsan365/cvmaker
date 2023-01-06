@@ -1,21 +1,39 @@
 import React from "react";
 import Select from "react-select";
+import { getConditionalFields } from "../utility/formUtils";
 const Dropdown = (props) => {
   const {
+    placeholder = "Select",
     name,
     inputType,
-    placeholder = "",
-    required = false,
-    id = "",
-    fieldClass = "",
+    className = "",
     options = [],
-    fieldStyle = "",
-    disabled = false,
     value,
-    isMulti = "",
+    id = "",
+    conditionalOptions = "",
+    dependentFieldName = "",
+    conditionalFields = "",
     onChange,
+    getOptionLabel = "",
+    getOptionValue = "",
+    formActions,
+    withValidation,
     ...other
   } = props;
+
+  const { values } = formActions;
+
+  const fetchValue = dependentFieldName && values[dependentFieldName];
+
+  //
+  let newOptions = conditionalOptions
+    ? Array.isArray(fetchValue)
+      ? fetchValue.reduce(
+          (acc, obj) => (acc = [...acc, ...conditionalOptions[obj?.value]]),
+          []
+        )
+      : conditionalOptions[fetchValue?.value]
+    : options;
 
   const handleChange = (value) => {
     onChange(name, value);
@@ -23,21 +41,23 @@ const Dropdown = (props) => {
   return (
     <>
       <Select
-        isMulti={isMulti ? isMulti : false}
-        id={id}
-        required={required}
-        placeholder={placeholder ? placeholder : "Select"}
-        style={fieldStyle ? fieldStyle : {}}
-        // className={fieldClass}
-        disabled={disabled}
-        options={options}
-        // getOptionLabel={option => option.name}
-        // getOptionValue={option => option.id}
-        className="basic-multi-select"
+        defaultValue={value}
+        placeholder={placeholder}
+        className={`basic-multi-select ${className}`}
+        options={dependentFieldName ? newOptions : options}
+        getOptionLabel={(option) =>
+          getOptionLabel ? option[getOptionLabel] : option.label
+        }
+        getOptionValue={(option) =>
+          getOptionValue ? option[getOptionValue] : option.value
+        }
         classNamePrefix="select"
         onChange={handleChange}
         {...other}
       />
+
+      {conditionalFields &&
+        getConditionalFields(values[name], conditionalFields, formActions,withValidation)}
     </>
   );
 };

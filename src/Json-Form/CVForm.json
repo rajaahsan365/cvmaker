@@ -5,7 +5,9 @@
     "name": "first_name",
     "id": "first_name",
     "placeholder": "First Name",
-    "validationtype": "name",
+    "validations": {
+      "required": true
+    },
     "wrapperClass": "col-md-6"
   },
   {
@@ -13,9 +15,10 @@
     "label": "Last Name",
     "name": "last_name",
     "id": "last_name",
-    "validationtype": "name",
     "placeholder": "Last Name",
-    "required": true,
+    "validations": {
+      "required": true
+    },
     "wrapperClass": "col-md-6"
   },
   {
@@ -24,9 +27,11 @@
     "name": "email",
     "inputType": "email",
     "id": "email",
-    "validationtype": "email",
     "placeholder": "Email",
-    "required": true,
+    "validations": {
+      "required": true,
+      "type": "email"
+    },
     "wrapperClass": "col-md-6"
   },
   {
@@ -34,9 +39,13 @@
     "label": "Phone No.",
     "name": "phone_no",
     "id": "phone_no",
-    "inputType": "number",
+    "inputType": "tel",
     "placeholder": "Phone No.",
-    "required": true,
+    "validations": {
+      "required": true,
+      "min": 10,
+      "max": 11
+    },
     "wrapperClass": "col-md-6"
   },
   {
@@ -45,7 +54,11 @@
     "name": "address",
     "id": "address",
     "placeholder": "Address",
-    "required": true,
+    "validations": {
+      "required": true,
+      "min": 7,
+      "max": 30
+    },
     "wrapperClass": "col-md-6"
   },
   {
@@ -54,7 +67,11 @@
     "name": "religion",
     "id": "religion",
     "placeholder": "Religion",
-    "required": true,
+    "validations": {
+      "required": true,
+      "min": 3,
+      "max": 10
+    },
     "wrapperClass": "col-md-6"
   },
   {
@@ -64,13 +81,21 @@
     "id": "about_you",
     "placeholder": "About YourSelf",
     "suggestion": "Optional details such as course description, marks etc.",
-    "inputType": "text-editor",
-    "required": true,
+    "inputType": "textarea",
+    "validations": {
+      "required": true,
+      "min": 10,
+      "max": 100
+    },
     "wrapperClass": "col-md-12"
   },
   {
     "category": "Work Experience",
-    "inputType": "fieldArray",
+    "inputType": "arrayField",
+    "validations":{
+      "type":"arrayField",
+      "min":1
+    },
     "name": "experiences",
     "wrapperClass": "col-12",
     "childs": [
@@ -79,7 +104,11 @@
         "name": "job_title",
         "id": "job_title",
         "placeholder": "Job Title",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -87,7 +116,11 @@
         "name": "company_name",
         "id": "company_name",
         "placeholder": "Company Name",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -97,7 +130,10 @@
         "placeholder": "Start Date",
         "suggestion": "Eg: Jan 2005",
         "inputType": "date",
-        "required": true,
+        "validations": {
+          "required": true,
+          "type": "startDate"
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -106,7 +142,11 @@
         "id": "end_date",
         "placeholder": "End Date",
         "suggestion": "Eg: Jan 2005,or Present",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 7
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -115,15 +155,23 @@
         "id": "job_description",
         "placeholder": "Job Description",
         "suggestion": "Optional details such as job responsibilites,achievements etc",
-        "inputType": "text-editor",
-        "required": true,
+        "inputType": "textarea",
+        "validations": {
+          "required": true,
+          "min": 10,
+          "max": 50
+        },
         "wrapperClass": "col-md-12"
       }
     ]
   },
   {
     "category": "Education",
-    "inputType": "fieldArray",
+    "inputType": "arrayField",
+    "validations":{
+      "type":"arrayField",
+      "min":1
+    },
     "name": "educations",
     "wrapperClass": "col-12",
     "childs": [
@@ -132,7 +180,11 @@
         "name": "institute_name",
         "id": "institute_name",
         "placeholder": "Institution Name",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -140,7 +192,11 @@
         "name": "degree_name",
         "id": "degree_name",
         "placeholder": "Degree Name",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -150,7 +206,10 @@
         "placeholder": "Start Date",
         "suggestion": "Eg: Jan 2005",
         "inputType": "date",
-        "required": true,
+        "validations": {
+          "required": true,
+          "type": "startDate"
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -159,7 +218,11 @@
         "id": "end_date",
         "placeholder": "End Date",
         "suggestion": "Eg: Jan 2005,or Present",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 7
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -168,15 +231,23 @@
         "id": "subjects",
         "placeholder": "Subjects",
         "suggestion": "Optional details such as course description, marks etc.",
-        "inputType": "text-editor",
-        "required": true,
+        "inputType": "textarea",
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-12"
       }
     ]
   },
   {
     "category": "Skills",
-    "inputType": "fieldArray",
+    "inputType": "arrayField",
+    "validations":{
+      "type":"arrayField",
+      "min":1
+    },
     "name": "skills",
     "wrapperClass": "col-12",
     "childs": [
@@ -185,7 +256,11 @@
         "name": "name",
         "id": "name",
         "placeholder": "Skill Name",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -195,14 +270,23 @@
         "suggestion": "Only Number is allowed between 0-100",
         "id": "value",
         "placeholder": "Rate YourSelf",
-        "required": true,
+        "validations": {
+          "required": true,
+          "type": "age",
+          "min": 10,
+          "max": 100
+        },
         "wrapperClass": "col-md-6"
       }
     ]
   },
   {
     "category": "Social",
-    "inputType": "fieldArray",
+    "inputType": "arrayField",
+    "validations":{
+      "type":"arrayField",
+      "min":1
+    },
     "name": "social_links",
     "wrapperClass": "col-12",
     "childs": [
@@ -211,7 +295,11 @@
         "name": "name",
         "id": "name",
         "placeholder": "Social Account Name",
-        "required": true,
+        "validations": {
+          "required": true,
+          "min": 3,
+          "max": 20
+        },
         "wrapperClass": "col-md-6"
       },
       {
@@ -219,7 +307,10 @@
         "name": "value",
         "id": "value",
         "placeholder": "Social Account Link",
-        "required": true,
+        "validations": {
+          "required": true,
+          "type": "url"
+        },
         "wrapperClass": "col-md-6"
       }
     ]
@@ -230,8 +321,13 @@
     "name": "hobbies",
     "id": "hobbies",
     "placeholder": "Hobbies",
-    "inputType": "text-editor",
-    "wrapperClass": "col-md-12"
+    "inputType": "textarea",
+    "wrapperClass": "col-md-12",
+    "validations": {
+      "required": true,
+      "min": 3,
+      "max": 50
+    }
   },
   {
     "category": "References",
@@ -239,68 +335,12 @@
     "name": "reference",
     "id": "reference",
     "placeholder": "Reference",
-    "inputType": "text-editor",
-    "required": true,
-    "wrapperClass": "col-md-12"
-  },
-  {
-    "category": "Special Section",
-    "label": "Title",
-    "name": "title",
-    "id": "title",
-    "placeholder": "Title",
-    "required": true,
-    "wrapperClass": "col-md-6"
-  },
-  {
-    "category": "Special Section",
-    "label": "Subtitle",
-    "name": "subtitle",
-    "id": "subtitle",
-    "placeholder": "Subtitle",
-    "required": true,
-    "wrapperClass": "col-md-6"
-  },
-  {
-    "category": "Special Section",
-    "label": "Start Date",
-    "name": "start_date",
-    "id": "start_date",
-    "placeholder": "Start Date",
-    "suggestion": "Eg: Jan 2005",
-    "inputType": "date",
-    "required": true,
-    "wrapperClass": "col-md-6"
-  },
-  {
-    "category": "Special Section",
-    "label": "End Date",
-    "name": "end_date",
-    "id": "end_date",
-    "placeholder": "End Date",
-    "suggestion": "Eg: Jan 2005,or Present",
-    "required": true,
-    "wrapperClass": "col-md-6"
-  },
-  {
-    "category": "Special Section",
-    "label": "Other Information",
-    "name": "other_info",
-    "id": "other_info",
-    "placeholder": "Other Information",
-    "suggestion": "Optional details such as course description, marks etc.",
-    "inputType": "text-editor",
-    "required": true,
-    "wrapperClass": "col-md-12"
-  },
-  {
-    "category": "Default Section",
-    "label": "New Section",
-    "name": "section",
-    "id": "section",
-    "placeholder": "New Section",
-    "inputType": "text-editor",
-    "required": true,
+    "inputType": "textarea",
+    "validations": {
+      "required": true,
+      "min": 3,
+      "max": 50
+    },
     "wrapperClass": "col-md-12"
   }
 ]
