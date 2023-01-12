@@ -12,18 +12,19 @@ const Input = (props) => {
   } = props;
   return (
     <>
-      <FastField
-        type={inputType}
-        className={`form-control ${className}`}
-        {...other}
-      />
-
-      {/* {conditionalFields && other.values && (
-        <GenerateFields
-          inputAttributes={[conditionalFields.male]}
-          formActions={formActions} 
-        />
-      )} */}
+      <FastField name={other.name}>
+        {() => {
+          console.log(other.name);
+          return (
+            <input
+              type={inputType}
+              value
+              className={`form-control ${className}`}
+              {...other}
+            />
+          );
+        }}
+      </FastField>
     </>
   );
 };

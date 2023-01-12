@@ -19,8 +19,7 @@ const GenerateFields = ({
     isSubmitting,
     setFieldValue,
   } = formActions;
-    console.log("🚀 ~ file: GenerateFields.jsx:22 ~ errors", errors)
-
+  
   const {
     label,
     name,
@@ -34,14 +33,13 @@ const GenerateFields = ({
     fieldParentClass = "",
     ...formAttributes
   } = inputAttributes;
-
   return (
     <React.Fragment>
       {formAttributes.inputType === "hidden" ? (
         <input type={"hidden"} attributes={formAttributes} />
       ) : (
         <div
-          className={`field-wrapper align-center ${
+          className={`field-wrapper align-center mb-2 ${
             formAttributes.inputType === "arrayField"
               ? "col-12 my-2"
               : wrapperClass

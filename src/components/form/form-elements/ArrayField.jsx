@@ -26,7 +26,7 @@ const ArrayField = (props) => {
           <div className="px-3">
             {Array.isArray(values[props.name]) &&
               values[props.name].map((val, indNum) => (
-                <div className="row border rounded py-2 my-2" key={indNum}>
+                <div className="row border rounded py-2 my-2" key={props.name}>
                   {childs &&
                     childs.map(
                       (
